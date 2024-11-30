@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="stylesheet" href="/styles/view.css" />
+    <title>View</title>
+  </head>
+  <body>
+    <section id="main">
+      <!-- Content Type Is Movies -->
+      <% if (locals.content && content.type === "movie") { %>
+
+      <div class="items">
+
+        <div class="poster">
+          <img src="<%= content.poster %>" alt="Movie Poster" />
+          <div class="viewBtn" onclick="viewPoster()">
+            <i class="icon bi-fullscreen"></i>
+          </div>
+        </div>
+
+        <div class="data">
+          <div class="title item">
+            <h1><%= content.title %></h1>
+            <p class="type"><%= content.type %></p>
+          </div>
+
+          <div class="country item">
+            <p><i class="icon bi-globe-americas"></i> <%= content.country %></p>
+            <p class="rating">
+              <i class="icon bi-activity"></i> <%= content.rating %>
+            </p>
+          </div>
+
+          <div class="released item">
+            <p class="runtime">
+              <i class="icon bi-clock"></i> <%= content.runtime %> runtime
+            </p>
+            <p class="released">
+              <i class="icon bi-calendar"></i> <%= content.released %> released
+            </p>
+          </div>
+
+          <div class="genre">
+            <p><i class="icon bi-bookmarks"></i> <%= content.genre %></p>
+          </div>
+
+          <div class="language">
+            <p><i class="icon bi-translate"></i> <%= content.language %></p>
+          </div>
+
+          <div class="actors">
+            <p><i class="icon bi-people"></i> <%= content.actors %></p>
+          </div>
+
+          <div class="writer">
+            <p><i class="icon bi-pencil"></i> <%= content.writer %></p>
+          </div>
+
+          <div class="director">
+            <p><i class="icon bi-person-badge"></i> <%= content.director %></p>
+          </div>
+
+          <div class="plot">
+            <p><i class="icon bi-journal-text"></i> Story...</p>
+            <p><%= content.plot %></p>
+          </div>
+
+          <h3>Our Details</h3>
+
+          <div class="ourDetails">
+            <div class="watchYear OurItem">
+              <p><i class="icon bi-calendar-check"></i> Watched Year</p>
+              <span class="ourData"> <%= content.watchYear %> </span>
+            </div>
+
+            <div class="wLanguage OurItem">
+              <p><i class="icon bi-translate"></i> Language</p>
+              <span class="ourData"> <%= content.wLanguage %></span>
+            </div>
+
+            <div class="watchCount OurItem">
+              <p><i class="icon bi-collection-play"></i> Watch Count</p>
+              <span class="ourData"> <%= content.watchCount %></span>
+            </div>
+
+            <div class="rpCount OurItem">
+              <p><i class="icon bi-repeat"></i> Repeat Watch</p>
+              <span class="ourData"> <%= content.rpCount %></span>
+            </div>
+
+            <div class="review OurItem">
+              <p><i class="icon bi-hand-thumbs-up"></i> Our Review</p>
+              <span class="ourData"> <%= content.review %></span>
+            </div>
+
+            <div class="uRating OurItem">
+              <p><i class="icon bi-star-half"></i> Our Rating</p>
+              <span class="ourData"> <%= content.uRating %></span>
+            </div>
+
+            <div class="subTitlesLink OurItem">
+              <p><i class="icon bi-copy"></i> Subtitle Links</p>
+              <span class="ourData" id="link" onclick="copyText()">
+                <%= content.subTitlesLink %></span
+              >
+            </div>
+
+            <div class="buttons">
+              <button type="submit" class="btn edit" onclick="window.location.href=`/edit/<%= content.id %>`">
+                Edit <i class="icon bi-pencil-square"></i>
+              </button>
+              <form  method="post">
+              <button type="submit" class="btn delete" formaction="/delete/<%= content.id %>">
+                Delete <i class="icon bi-trash"></i>
+              </button>
+              </form>
+            
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <% } else { %>
+      <!-- Content Type Is Series -->
+
+      <div class="items">
+
+        <div class="poster">
+          <img src="<%= content.poster %>" alt="Movie Poster" />
+          <div class="viewBtn" onclick="viewPoster()">
+            <i class="icon bi-fullscreen"></i>
+          </div>
+        </div>
+
+        <div class="data">
+          <div class="title item">
+            <h1><%= content.title %></h1>
+            <p class="type"><%= content.type %></p>
+          </div>
+
+          <div class="country item">
+            <p><i class="icon bi-globe-americas"></i> <%= content.country %></p>
+            <p class="rating">
+              <i class="icon bi-activity"></i> <%= content.rating %>
+            </p>
+          </div>
+
+          <div class="released item">
+            <p class="runtime">
+              <i class="icon bi-clock"></i> <%= content.runtime %> runtime
+            </p>
+            <p class="released">
+              <i class="icon bi-calendar"></i> <%= content.released %> released
+            </p>
+          </div>
+
+          <div class="genre">
+            <p><i class="icon bi-bookmarks"></i> <%= content.genre %></p>
+          </div>
+
+          <div class="language">
+            <p><i class="icon bi-translate"></i> <%= content.language %></p>
+          </div>
+
+          <div class="actors">
+            <p><i class="icon bi-people"></i> <%= content.actors %></p>
+          </div>
+
+          <div class="writer">
+            <p><i class="icon bi-pencil"></i> <%= content.writer %></p>
+          </div>
+
+          <div class="director">
+            <p><i class="icon bi-person-badge"></i> <%= content.director %></p>
+          </div>
+
+          <div class="plot">
+            <p><i class="icon bi-journal-text"></i> Story...</p>
+            <p><%= content.plot %></p>
+          </div>
+
+          <h3>Our Details</h3>
+
+          <div class="ourDetails">
+            <div class="watchYear OurItem">
+              <p><i class="icon bi-calendar-check"></i> Watched Year</p>
+              <span class="ourData"> <%= content.watchYear %> </span>
+            </div>
+
+            <div class="wLanguage OurItem">
+              <p><i class="icon bi-translate"></i> Language</p>
+              <span class="ourData"> <%= content.wLanguage %></span>
+            </div>
+
+            <div class="watchCount OurItem">
+              <p><i class="icon bi-collection-play"></i> Watch Count</p>
+              <span class="ourData"> <%= content.watchCount %></span>
+            </div>
+
+            <div class="rpCount OurItem">
+              <p><i class="icon bi-repeat"></i> Repeat Watch</p>
+              <span class="ourData"> <%= content.rpCount %></span>
+            </div>
+
+            <div class="review OurItem">
+              <p><i class="icon bi-hand-thumbs-up"></i> Our Review</p>
+              <span class="ourData"> <%= content.review %></span>
+            </div>
+
+            <div class="lastWatchSeason OurItem">
+              <p><i class="icon bi-pc-display-horizontal"></i> Last Season</p>
+              <span class="ourData"> <%= content.lastWatchSeason %></span>
+            </div>
+
+            <div class="lastWatchEpisode OurItem">
+              <p><i class="icon bi-tv"></i> Last Episode</p>
+              <span class="ourData"> <%= content.lastWatchEpisode %></span>
+            </div>
+
+            <div class="status OurItem">
+              <p><i class="icon bi-clipboard2-data"></i> Status</p>
+              <span class="ourData"> <%= content.status %></span>
+            </div>
+
+            <div class="uRating OurItem">
+              <p><i class="icon bi-star-half"></i> Our Rating</p>
+              <span class="ourData"> <%= content.uRating %></span>
+            </div>
+
+            <div class="subTitlesLink OurItem">
+              <p><i class="icon bi-copy"></i> Subtitle Links</p>
+              <span class="ourData" id="link" onclick="copyText()">
+                <%= content.subTitlesLink %></span
+              >
+            </div>
+
+            <div class="buttons">
+              <button type="submit" class="btn edit" onclick="window.location.href=`/edit/<%= content.id %>`">
+                Edit <i class="icon bi-pencil-square"></i>
+              </button>
+              <form  method="post">
+                <button type="submit" class="btn delete" formaction="/delete/<%= content.id %>">
+                  Delete <i class="icon bi-trash"></i>
+                </button>
+                </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <% } %>
+    </section>
+
+    <script src="/js/view.js"></script>
+
+  </body>
+</html>

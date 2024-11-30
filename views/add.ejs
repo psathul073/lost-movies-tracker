@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/add.css" />
+    <title>Add</title>
+  </head>
+  <body>
+    <section id="add">
+      <div class="header">
+        <h1 id="headTitle">Add</h1>
+        <i class="icon bi-plus-circle-dotted" id="addIcon" onclick="showHide()">
+        </i>
+      </div>
+
+      <div id="getDataForm">
+        <form id="dataForm" action="/add/data" method="post">
+          <div class="sInputs">
+            <input
+              id="tl"
+              type="text"
+              name="title"
+              style="text-transform: lowercase"
+              required
+            />
+            <span class="label" id="tle">Title</span>
+          </div>
+
+          <div class="sInputs">
+            <input id="yr" type="number" name="year" required />
+            <span class="label" id="yer">Year</span>
+          </div>
+
+          <input type="hidden" name="plot" value="full" />
+          <input type="hidden" name="response" value="json" />
+          <input id="type" type="hidden" name="type" value="" />
+          <div class="searchBtn">
+            <button style="background-color: transparent" type="submit">
+              <i class="icon bi-search" id="searchIcon"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="movies">
+        <!-- Movies Data -->
+        <% if (locals.contents && contents.Type ==="movie") { %>
+
+        <!-- Show Movies Section -->
+        <style>
+          #movies {
+            display: block;
+          }
+          #series {
+            display: none;
+          }
+          #no-data-gif-2,
+          #no-data-gif-3 {
+            display: none;
+          }
+        </style>
+        <!-- Add Head Title -->
+        <script>
+          document.getElementById("headTitle").innerText = "Movies";
+        </script>
+
+        <div class="items">
+          <div class="poster">
+            <img src="<%= contents.Poster %>" alt="movie poster" />
+          </div>
+
+          <div class="data">
+            <form action="/add" method="post">
+              <div class="contents">
+                <p class="ipExtend">Movies Details</p>
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="titles"
+                    name="title"
+                    value="<%= contents.Title %>"
+                    readonly
+                  />
+                  <span class="labels">Title</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="released"
+                    name="released"
+                    value="<%= contents.Released %>"
+                    readonly
+                  />
+                  <span class="labels">Released</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <input
+                    type="text"
+                    id="genre"
+                    name="genre"
+                    value="<%= contents.Genre %>"
+                    readonly
+                  />
+                  <span class="labels">Genre</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="runtime"
+                    name="runtime"
+                    value="<%= contents.Runtime %>"
+                    readonly
+                  />
+                  <span class="labels">Runtime</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value="<%= contents.Country %>"
+                    readonly
+                  />
+                  <span class="labels">Country</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <input
+                    type="text"
+                    id="actors"
+                    name="actors"
+                    value="<%= contents.Actors %>"
+                    readonly
+                  />
+                  <span class="labels">Actors</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="language"
+                    name="language"
+                    value="<%= contents.Language %>"
+                    readonly
+                  />
+                  <span class="labels">Language</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="rating"
+                    name="rating"
+                    value="<%= contents.imdbRating %>"
+                    readonly
+                  />
+                  <span class="labels">Rating</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <textarea
+                    type="text"
+                    id="plot"
+                    name="plot"
+                    rows="3"
+                    cols="60"
+                    readonly
+                  >
+ <%= contents.Plot %></textarea
+                  >
+                  <span class="labels">Plot</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="writer"
+                    name="writer"
+                    value="<%= contents.Writer %>"
+                    readonly
+                  />
+                  <span class="labels">Writer</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="director"
+                    name="director"
+                    value="<%= contents.Director %>"
+                    readonly
+                  />
+                  <span class="labels">Director</span>
+                </div>
+                <p class="ipExtend">Our Details</p>
+                <div class="inputs">
+                  <input
+                    type="date"
+                    id="watc-year"
+                    name="watchYear"
+                    placeholder="First Time Watched Year ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Year</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="number"
+                    id="watc-count"
+                    name="watchCount"
+                    placeholder="Movie Watched Count ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Count</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <div class="inputs ipExtend">
+                    <select id="review" name="review">
+                      <option value="good">Good</option>
+                      <option value="bad">Bad</option>
+                      <option value="satisfying">Satisfying</option>
+                      <option value="average">Average</option>
+                    </select>
+                    <span class="labels">Small Review</span>
+                  </div>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="wLanguage"
+                    name="wLanguage"
+                    placeholder="Watched Language ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Language</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="uRating"
+                    name="uRating"
+                    placeholder="Our Rating ?"
+                    maxlength="5"
+                    value="⭐⭐⭐⭐⭐"
+                    required
+                  />
+                  <span class="labels">Our Rating</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="number"
+                    id="rpCount"
+                    name="rpCount"
+                    placeholder="Repeat Watch Count ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Repeat Count</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="subTitlesLink"
+                    name="subTitlesLink"
+                    placeholder="Sub Title Link ?"
+                    maxlength="50"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Sub Title </span>
+                </div>
+
+                <input type="hidden" name="type" value="<%= contents.Type %>" />
+                <input
+                  type="hidden"
+                  name="poster"
+                  value="<%= contents.Poster %>"
+                />
+
+                <div class="upload">
+                  <button type="submit">
+                    <i class="icon bi-cloud-arrow-up"></i> Upload
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <% } else { %>
+        <style>
+          #no-data-gif-1 {
+            display: block;
+          }
+        </style>
+        <img
+          class="gif"
+          id="no-data-gif-1"
+          src="/gif/no-data.gif"
+          alt="no data gif"
+        />
+        <% } %>
+      </div>
+
+      <div id="series">
+        <!-- Series Data -->
+        <% if (locals.contents && contents.Type ==="series") { %>
+
+        <!-- Show Movies Section -->
+        <style>
+          #movies {
+            display: none;
+          }
+          #series {
+            display: block;
+          }
+          #no-data-gif-1,
+          #no-data-gif-3 {
+            display: none;
+          }
+        </style>
+        <!-- Add Head Title -->
+        <script>
+          document.getElementById("headTitle").innerText = "Web Series";
+        </script>
+
+        <div class="items">
+          <div class="poster">
+            <img src="<%= contents.Poster %>" alt="movie poster" />
+          </div>
+
+          <div class="data">
+            <form action="/add" method="post">
+              <div class="contents">
+                <p class="ipExtend">Web Series Details</p>
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="titles"
+                    name="title"
+                    value="<%= contents.Title %>"
+                    readonly
+                  />
+                  <span class="labels">Title</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="released"
+                    name="released"
+                    value="<%= contents.Year %>"
+                    readonly
+                  />
+                  <span class="labels">Released Years</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <input
+                    type="text"
+                    id="genre"
+                    name="genre"
+                    value="<%= contents.Genre %>"
+                    readonly
+                  />
+                  <span class="labels">Genre</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="runtime"
+                    name="runtime"
+                    value="<%= contents.Runtime %>"
+                    readonly
+                  />
+                  <span class="labels">Runtime</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value="<%= contents.Country %>"
+                    readonly
+                  />
+                  <span class="labels">Country</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <input
+                    type="text"
+                    id="actors"
+                    name="actors"
+                    value="<%= contents.Actors %>"
+                    readonly
+                  />
+                  <span class="labels">Actors</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="language"
+                    name="language"
+                    value="<%= contents.Language %>"
+                    readonly
+                  />
+                  <span class="labels">Language</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="rating"
+                    name="rating"
+                    value="<%= contents.imdbRating %>"
+                    readonly
+                  />
+                  <span class="labels">Rating</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <textarea
+                    type="text"
+                    id="plot"
+                    name="plot"
+                    rows="3"
+                    cols="60"
+                    readonly
+                  >
+ <%= contents.Plot %></textarea
+                  >
+                  <span class="labels">Plot</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="writer"
+                    name="writer"
+                    value="<%= contents.Writer %>"
+                    readonly
+                  />
+                  <span class="labels">Writer</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="director"
+                    name="director"
+                    value="<%= contents.Director %>"
+                    readonly
+                  />
+                  <span class="labels">Director</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="totalSeasons"
+                    name="totalSeasons"
+                    value="<%= contents.totalSeasons %>"
+                    readonly
+                  />
+                  <span class="labels">Total Seasons</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="totalEpisodes"
+                    name="totalEpisodes"
+                    value="<%= contents.totalEpisodes %>"
+                    readonly
+                  />
+                  <span class="labels">Total Episodes</span>
+                </div>
+
+                <p class="ipExtend">Our Details</p>
+                <div class="inputs">
+                  <input
+                    type="date"
+                    id="watc-year"
+                    name="watchYear"
+                    placeholder="First Time Watched Year ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Year</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="number"
+                    id="watc-count"
+                    name="watchCount"
+                    placeholder="Series Watched Count ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Count</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="number"
+                    id="lastWatchSeason"
+                    name="lastWatchSeason"
+                    placeholder="Last Watched Season ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Seasons</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="number"
+                    id="lastWatchEpisode"
+                    name="lastWatchEpisode"
+                    placeholder="Last Watched Episodes ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Episodes</span>
+                </div>
+
+                <div class="inputs ipExtend">
+                  <div class="inputs ipExtend">
+                    <select id="review" name="review">
+                      <option value="good">Good</option>
+                      <option value="bad">Bad</option>
+                      <option value="satisfying">Satisfying</option>
+                      <option value="average">Average</option>
+                    </select>
+                    <span class="labels">Small Review</span>
+                  </div>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="wLanguage"
+                    name="wLanguage"
+                    placeholder="Watched Language ?"
+                    value=""
+                    required
+                  />
+                  <span class="labels">Watch Language</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="uRating"
+                    name="uRating"
+                    placeholder="Our Rating ?"
+                    maxlength="5"
+                    value="⭐⭐⭐⭐⭐"
+                    required
+                  />
+                  <span class="labels">Our Rating</span>
+                </div>
+
+                <div class="inputs">
+                  <select name="status" id="status">
+                    <option value="watching">Watching</option>
+                    <option value="finished">Finished</option>
+                    <option value="abandoned">Abandoned</option>
+                    <option value="pause">Paused</option>
+                  </select>
+                  <span class="labels">Current Status</span>
+                </div>
+
+                <div class="inputs">
+                  <input
+                    type="text"
+                    id="subTitleLink"
+                    name="subTitleLink"
+                    placeholder="Sub Titles Links ?"
+                    maxlength="50"
+                  />
+                  <span class="labels">Sub Titles</span>
+                </div>
+
+                <input type="hidden" name="type" value="<%= contents.Type %>" />
+                <input
+                  type="hidden"
+                  name="poster"
+                  value="<%= contents.Poster %>"
+                />
+
+                <div class="upload">
+                  <button type="submit">
+                    <i class="icon bi-cloud-arrow-up"></i> Upload
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <% } else { %>
+        <style>
+          #no-data-gif-2 {
+            display: block;
+          }
+        </style>
+        <img
+          class="gif"
+          id="no-data-gif-2"
+          src="/gif/no-data.gif"
+          alt="no data gif"
+        />
+        <% } %>
+      </div>
+
+      <!-- No Data Gif -->
+      <img
+        class="gif"
+        id="no-data-gif-3"
+        src="/gif/no-data.gif"
+        alt="no data gif"
+      />
+
+      <div class="switch">
+        <button id="homeBtn" onclick="window.location.href='/'">
+          <i class="icon bi-box"></i> Home
+        </button>
+        <button id="moviesBtn" onclick="movies()">
+          <i class="icon bi-film"></i> Movies
+        </button>
+        <button id="seriesBtn" onclick="series()">
+          <i class="icon bi-collection-play"></i> Series
+        </button>
+      </div>
+      <!-- Messages -->
+      <% if (locals.message) { %>
+      <div class="msg">
+        <div class="msgContent" onclick="msgExit()">
+          <p><i class="icon bi-chat-left-dots"></i> <%=locals.message %></p>
+          <i id="msgExit" class="icon bi-x-lg"></i>
+        </div>
+      </div>
+      <!-- Call Exit Function -->
+      <script>
+        setTimeout(() => {
+          msgExit();
+        }, 3000);
+      </script>
+      <% } %>
+    </section>
+
+    <script src="/js/add.js"></script>
+  </body>
+</html>

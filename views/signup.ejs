@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/style.css" />
+  <title>Sign Up</title>
+</head>
+<body> 
+  <section class="loginContainer">
+    <h1>Sign Up</h1>
+    <!-- Alert Message -->
+    <% if (locals.alertMsg) { %>
+      <p class=" msg msgAlert"><%= alertMsg %></p>
+      <!-- Reload Window -->
+      <!-- <script>
+        setTimeout(() => {
+          window.location.replace("/signup");
+        }, 1200);
+      </script> -->
+     <% } %>
+    <form id="loginForm" action="/auth/signup" method="POST">
+     <div class="userInput"><input
+        type="text"
+        id="username"
+        name="username"
+        required
+        autocomplete="off"
+      />
+       <span class="label" id="user" for="username">Username</span>
+      </div>
+      <div class="userInput">
+         <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        autocomplete="off"
+      />
+      <span class="label" id="pwd" for="password">Password</span>
+
+      <!-- Password Show Hide -->
+      <div class="eye" onclick="showHide()">
+        <ion-icon id="sh-icon" name="eye-outline"></ion-icon>
+      </div>
+
+      </div>
+     
+      <div class="sub">
+        <button id="submit" type="submit">Signup</button>
+     <span class="subIcon"><ion-icon name="log-in-outline"></ion-icon></span>
+     </div>
+    </form>
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </section>
+  <script src="/js/script.js"></script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+</body>
+</html>

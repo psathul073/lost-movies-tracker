@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <section class="loginContainer">
+      <h1>Log In</h1>
+      <!-- Display Alert Message If Available -->
+      <% if (locals.alertMsg) { %>
+        <p class=" msg msgAlert"><%= alertMsg %></p>
+       <% } %>
+       <!-- Display Alert Message If Available -->
+      <% if (locals.infoMsg) { %>
+        <p class=" msg msgInfo"><%= infoMsg %></p>
+       <% } %>
+      <form id="loginForm" action="/auth/login" method="POST">
+       <div class="userInput"><input
+          type="text"
+          id="username"
+          name="username"
+          required
+          autocomplete="off"
+        />
+         <span class="label" id="user" for="username">Username</span>
+        </div>
+        <div class="userInput">
+           <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="off"
+        />
+        <span class="label" id="pwd" for="password">Password</span>
+          <!-- Password Show Hide -->
+          <div class="eye" onclick="showHide()">
+            <ion-icon id="sh-icon" name="eye-outline"></ion-icon>
+          </div>
+        </div>
+     
+        <div class="sub">
+           <button id="submit" type="submit">Login</button>
+        <span class="subIcon"><ion-icon name="log-in-outline"></ion-icon></span>
+        </div>
+      </form>
+
+      <p>Create a new account <a href="/signup">Signup</a></p>
+    </section>
+    <script src="/js/script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>Home</title>
+</head>
+<body>
+  <!-- Header -->
+  <%- include('./partials/header.ejs') %>
+  <section id="main">
+
+<!-- Settings And Profile Popup Background Overlay -->
+<div class="backgroundBlur" id="bgBlur"></div>
+<!-- Settings Popup-->
+<div class="settingPopUp">
+  <div class="title">
+    <p> Settings </p> <i class="icon bi-x-lg"></i>
+  </div>
+  <div class="popUp">
+
+    <div class="items">
+      <p>Select light theme</p> 
+
+      <label class="switch">
+        <input type="checkbox" id="light">
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="items">
+      <p>Select dark theme</p> 
+
+      <label class="switch">
+        <input type="checkbox" id="dark">
+        <span class="slider"></span>
+      </label>
+      
+    </div>
+
+    <div class="items">
+
+      <p>Log out on this device </p> 
+      
+      <form action="/auth/logout" method="post">
+        <button type="submit" id="idLogout"> Log out</button>
+      </form>
+      
+    </div>
+
+  </div>
+</div>
+
+<!-- Profile Popup -->
+<div class="profilePopUp">
+
+  <div class="title">
+    <p> Profile </p> <i class="icon bi-x-lg"></i>
+  </div>
+
+  <div class="popUp">
+    <div class="items">
+      <p> <i class="icon bi-person-badge"></i> Username</p> 
+      <span> <%= userName %></span>
+    </div>
+
+    <div class="items">
+      <p> <i class="icon bi-database-exclamation"></i> Total Movies And Series</p> 
+      <span class="count"> <%= totalData %> </span>
+    </div>
+
+    <div class="items">
+      <p> <i class="icon bi-film"></i> Total Movies</p> 
+      <span class="count"> <%= totalMovies %> </span>
+    </div>
+
+    <div class="items">
+      <p> <i class="icon bi-collection-play"></i> Total Series</p> 
+      <span class="count"> <%= totalSeries %> </span>
+    </div>
+
+    <div class="items">
+      <p> <i class="icon bi-person-add"></i> Create A New Account </p> 
+      <form action="/auth/logout" method="post">
+        <button type="submit" onclick="window.location.href= '/signup'" id="create"> Create</button>
+      </form>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<!--Movies And Series  Data Show -->
+<div class="container">
+    <% if (locals.contents) { %>
+      <% contents.forEach(data => { %>
+        <div class="items" id=" <%= data.id %>" onclick="viewItems(this)">
+
+          <div class="poster">
+            <img src="<%= data.poster %>" alt="Poster Images" width="120px">
+          </div>
+
+          <div class="data">
+            <h2><%= data.title %> </h2>
+            <p> <i class="icon bi-clock"></i> <%= data.runtime %>, Runtime</p>
+            <p> <i class="icon bi-calendar"></i> Released, <%= data.released %></p>
+            <p> <i class="icon bi-bookmarks"></i> <%= data.genre %></p>
+            <p> <i class="icon bi-translate"></i> </ion-icon> <%= data.language %></p>
+            <p> <i class="icon bi-star"></i> <%= data.uRating %></p>
+          </div>
+          
+        </div>
+       
+      <% }) %>
+     
+    <%} %>
+  
+</div>
+
+</section>
+<!-- Footer -->
+<%- include('./partials/footer.ejs') %>
+ 
+  <script src="/js/main.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

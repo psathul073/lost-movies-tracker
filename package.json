@@ -1,0 +1,30 @@
+{
+  "name": "lost-movies",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "engines": {
+  "node": "20.x"
+},
+  "keywords": [],
+  "author": "Athul PS",
+  "license": "ISC",
+  "description": "We Can Store Watched Movies And Series Details",
+  "dependencies": {
+    "axios": "^1.7.8",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "hexoid": "^2.0.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

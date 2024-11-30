@@ -1,0 +1,148 @@
+<!-- SIDEBAR -->
+<aside id="sidebar" style="display: none; ">
+
+<div class="sidebarContents">
+  
+    <div class="sidebarBtns">
+<button class="close" onclick="closeNav()" style="background-color: transparent;">
+    <!-- <img class="icon" id="menu-icon-0" src="/icons/sidebar.svg" alt="sidebar icon"> -->
+    <i class="icon bi-menu-button" id="menu-icon-0"></i>
+    <!-- <img class="icon" id="menu-icon-1" src="/icons/menu.svg" alt="menu icon" > -->
+    <i class="icon bi-menu-button-wide" id="menu-icon-1"></i>
+  </button>
+  <button class="add" style="background-color: transparent;" onclick="window.location.href = '/add'">
+    <!-- <img class="icon" src="/icons/add.svg" alt="add icon"></button> -->
+    <i class="icon bi-plus-circle"></i>
+  </div>
+  
+  <div class="sidebarItems">
+
+      <!-- Search Box -->
+      <div class="search">
+        <form action="/search" method="post">
+
+        <input type="search" name="search" id="search" placeholder="Search"/>
+        <button type="submit" style="background-color: transparent; cursor: pointer;">
+          <i class="icon bi-search"></i>
+        </button>
+        
+          </form>
+      </div>
+
+    <div class="links">
+  <a href="/"><i class="icon bi-box-seam"></i> Home</a>
+  <a href="/movies"><i class="icon bi-film"></i> Movies</a>
+  <a href="/series"><i class="icon bi-collection-play"></i> Web Series</a>
+    </div>
+
+  </div>
+
+  <!-- Sidebar Log out Menu -->
+   <div id="sideMenu">
+
+    <div class="menu">
+      <div class="items profileBtn">
+        <i class="icon bi-person-check"></i>
+        <p> <%= userName %></p>
+      </div>
+
+      <div class="items settings">
+        <i class="icon bi-gear"></i>
+        <p>Settings</p>
+      </div>
+
+      <div class="line"></div>
+
+      <!-- Log Out -->
+      <form action="/auth/logout" method="post">
+      <button class="items" type="submit">
+        <i class="icon bi-box-arrow-right"></i>
+        <p>Log out</p>
+      </button>
+      </form>
+
+    </div>
+
+   </div>
+
+   <!-- Sidebar Profile -->
+  <div id="profile-2">
+ <div class="profile">
+    <img src="/images/rabbit.png" alt="avatar image" width="32px"/>
+    <p><%= userName %></p>
+  </div>
+    </div>
+ 
+
+</div>
+
+</aside>
+
+<!-- HEADER -->
+<header>
+  
+ <div class="overlay" onclick="closeNav()"></div>
+
+    <div class="head">
+    <div class="headSection">
+      <!-- Open -->
+      <button id="openNav" onclick="openNav()" style="background-color: transparent;">
+        <i class="icon bi-menu-button" id="menu-icon-2"></i>
+        <!-- <img class="icon" id="menu-icon-2" src="/icons/sidebar.svg" alt="sidebar icon" style=" margin: 0%;"> -->
+        <!-- <img class="icon" id="menu-icon-3" src="/icons/menu.svg" alt="menu icon" style=" margin: 0%;"> -->
+        <i class="icon bi-menu-button-wide" id="menu-icon-3"></i>
+
+      </button>
+      <!-- Add Button -->
+      <button id="addBtn" style=" background-color: transparent;" onclick="window.location.href = '/add'">
+        <i class="icon bi-plus-circle"></i>
+      </button>
+      <!-- Logo -->
+      <h1>Lost Movies</h1>
+    </div>
+
+    <!--Header Profile -->
+    <div id="profile-1">
+      <img src="/images/rabbit.png" alt="profile icon" height="35px" />
+    </div>
+    <!-- Add Button -->
+    <button id="addBtn-1" style=" background-color: transparent;" onclick="window.location.href = '/add'">
+      <!-- <img class="icon" src="/icons/add.svg" alt="add icon"> -->
+      <i class="icon bi-plus-circle"></i>
+    </button>
+    </div>
+
+      <!-- Main Menu -->
+   <div id="mainMenu" >
+
+    <div class="menu">
+
+      <div class="items profileBtn">
+        <i class="icon bi-person-check"></i>
+        <p> <%= userName %></p>
+      </div>
+
+      <div class="items settings">
+        <i class="icon bi-gear"></i>
+        <p>Settings</p>
+      </div>
+
+      <div class="line"></div>
+
+      <!-- Log Out -->
+      <form action="/auth/logout" method="post">
+        <button type="submit" class="items">
+        <i class="icon bi-box-arrow-right"></i>
+        <p>Log out</p>
+      </button>
+
+      </form>
+    
+
+    </div>
+
+   </div>
+  
+</header>
+
+
